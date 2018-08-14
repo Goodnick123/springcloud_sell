@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: order
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG
+      profile: dev
+    stream:
+      bindings:
+        input:
+            destination: myMessage
+            contentType: application/json
+        output:
+            destination: myMessage
+            contentType: application/json
+        inputOrder:
+            destination: myClientTest
+            contentType: application/json
+        outputOrder:
+            destination: myClientTest
+            contentType: application/json
+  redis:
+    host: localhost
+    port: 6379
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+hystrix:
+    command:
+      default:
+          execution:
+              isolation:
+                  thread:
+                      timeoutInMilliseconds: 1000
+
+      getProductInfoList:
+          execution:
+              isolation:
+                  thread:
+                      timeoutInMilliseconds: 3000
+
+
+feign:
+   hystrix:
+      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+

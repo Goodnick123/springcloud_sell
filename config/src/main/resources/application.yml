@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+         git:
+           uri: https://github.com/Goodnick123/config-repo
+           username: 576182627@qq.com
+           password: 353099128yly
+           basedir: /home/yeh/Documents/springcloud_sell/config/basedir
+
+eureka:
+  client:
+    service-url:
+        defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
